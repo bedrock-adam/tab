@@ -95,27 +95,71 @@ describe("core", function() {
   });
 
   describe("pool", function() {
-    describe("isWin", function() {
-      it("should return correct result", function() {
-        expect(isWin("Bet:W:1:16")).toBe(true);
-        expect(isWin("Bet:P:4:52")).toBe(false);
-        expect(isWin("Bet:E:2,3:47")).toBe(false);
+    describe("predicates", function() {
+      describe("isWin", function() {
+        it("should return correct result", function() {
+          expect(isWin("Bet:W:1:16")).toBe(true);
+          expect(isWin("Bet:P:4:52")).toBe(false);
+          expect(isWin("Bet:E:2,3:47")).toBe(false);
+        });
+      });
+
+      describe("isPlace", function() {
+        it("should return correct result", function() {
+          expect(isPlace("Bet:W:1:16")).toBe(false);
+          expect(isPlace("Bet:P:4:52")).toBe(true);
+          expect(isPlace("Bet:E:2,3:47")).toBe(false);
+        });
+      });
+
+      describe("isExacta", function() {
+        it("should return correct result", function() {
+          expect(isExacta("Bet:W:1:16")).toBe(false);
+          expect(isExacta("Bet:P:4:52")).toBe(false);
+          expect(isExacta("Bet:E:2,3:47")).toBe(true);
+        });
       });
     });
 
-    describe("isPlace", function() {
-      it("should return correct result", function() {
-        expect(isPlace("Bet:W:1:16")).toBe(false);
-        expect(isPlace("Bet:P:4:52")).toBe(true);
-        expect(isPlace("Bet:E:2,3:47")).toBe(false);
-      });
-    });
+    describe("collection", function() {
+      var bets = [
+        "Bet:W:3:5",
+        "Bet:W:4:5",
+        "Bet:W:1:16",
+        "Bet:P:2:16",
+        "Bet:P:3:82",
+        "Bet:P:4:52",
+        "Bet:E:2,3:61",
+        "Bet:E:2,3:47"
+      ];
 
-    describe("isExacta", function() {
-      it("should return correct result", function() {
-        expect(isExacta("Bet:W:1:16")).toBe(false);
-        expect(isExacta("Bet:P:4:52")).toBe(false);
-        expect(isExacta("Bet:E:2,3:47")).toBe(true);
+      describe("wins", function() {
+        it("should return all win bets", function() {
+          expect(wins(bets)).toEqual([
+            "Bet:W:3:5",
+            "Bet:W:4:5",
+            "Bet:W:1:16"
+          ]);
+        });
+      });
+
+      describe("places", function() {
+        it("should return all place bets", function() {
+          expect(places(bets)).toEqual([
+            "Bet:P:2:16",
+            "Bet:P:3:82",
+            "Bet:P:4:52"
+          ]);
+        });
+      });
+
+      describe("exactas", function() {
+        it("should return all exacta bets", function() {
+          expect(exactas(bets)).toEqual([
+            "Bet:E:2,3:61",
+            "Bet:E:2,3:47"
+          ]);
+        });
       });
     });
   });

@@ -1,3 +1,15 @@
+function wins(bets) {
+  return _.filter(bets, isWin);
+}
+
+function places(bets) {
+  return _.filter(bets, isPlace);
+}
+
+function exactas(bets) {
+  return _.filter(bets, isExacta);
+}
+
 function isWin(bet) {
   return product(bet) === 'W';
 }
