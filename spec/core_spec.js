@@ -93,4 +93,30 @@ describe("core", function() {
       });
     });
   });
+
+  describe("pool", function() {
+    describe("isWin", function() {
+      it("should return correct result", function() {
+        expect(isWin("Bet:W:1:16")).toBe(true);
+        expect(isWin("Bet:P:4:52")).toBe(false);
+        expect(isWin("Bet:E:2,3:47")).toBe(false);
+      });
+    });
+
+    describe("isPlace", function() {
+      it("should return correct result", function() {
+        expect(isPlace("Bet:W:1:16")).toBe(false);
+        expect(isPlace("Bet:P:4:52")).toBe(true);
+        expect(isPlace("Bet:E:2,3:47")).toBe(false);
+      });
+    });
+
+    describe("isExacta", function() {
+      it("should return correct result", function() {
+        expect(isExacta("Bet:W:1:16")).toBe(false);
+        expect(isExacta("Bet:P:4:52")).toBe(false);
+        expect(isExacta("Bet:E:2,3:47")).toBe(true);
+      });
+    });
+  });
 });

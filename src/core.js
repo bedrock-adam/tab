@@ -1,17 +1,29 @@
-function isBet(input) {
-  return input.split(':')[0] === 'Bet';
+function isWin(bet) {
+  return product(bet) === 'W';
+}
+
+function isPlace(bet) {
+  return product(bet) === 'P';
+}
+
+function isExacta(bet) {
+  return product(bet) === 'E';
 }
 
 function bets(input) {
   return _.filter(input, isBet);
 }
 
-function isResult(input) {
-  return input.split(':')[0] === 'Result';
-}
-
 function result(input) {
   return _.first(_.filter(input, isResult));
+}
+
+function isBet(input) {
+  return input.split(':')[0] === 'Bet';
+}
+
+function isResult(input) {
+  return input.split(':')[0] === 'Result';
 }
 
 function product(bet) {
