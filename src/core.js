@@ -39,25 +39,29 @@ function isResult(input) {
 }
 
 function product(bet) {
-  return bet.split(':')[1];
+  return split(bet)[1];
 }
 
 function selection(bet) {
-  return bet.split(':')[2];
+  return split(bet)[2];
 }
 
 function stake(bet) {
-  return parseInt(bet.split(':')[3], 10);
+  return parseInt(split(bet)[3], 10);
 }
 
 function first(result) {
-  return result.split(':')[1]
+  return split(result)[1]
 }
 
 function second(result) {
-  return result.split(':')[2]
+  return split(result)[2]
 }
 
 function third(result) {
-  return result.split(':')[3]
+  return split(result)[3]
+}
+
+function split(input) {
+  return input.split(':')
 }
