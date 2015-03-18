@@ -24,4 +24,24 @@ describe("core", function() {
       });
     });
   });
+
+  describe("result", function() {
+    describe("first", function() {
+      it("should return correct result", function() {
+        expect(first("Result:2:3:1")).toBe("2");
+      });
+    });
+
+    describe("second", function() {
+      it("should return correct result", function() {
+        expect(second("Result:2:3:1")).toBe("3");
+      });
+    });
+
+    describe("third", function() {
+      it("should return correct result", function() {
+        expect(third("Result:2:3:1")).toBe("1");
+      });
+    });
+  });
 });
