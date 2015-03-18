@@ -1,3 +1,11 @@
+function isBet(input) {
+  return input.split(':')[0] === 'Bet';
+}
+
+function isResult(input) {
+  return input.split(':')[0] === 'Result';
+}
+
 function product(bet) {
   return bet.split(':')[1];
 }

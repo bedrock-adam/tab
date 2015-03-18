@@ -1,4 +1,20 @@
 describe("core", function() {
+  describe("input", function() {
+    describe("isBet", function() {
+      it("should return correct result", function() {
+        expect(isBet("Bet:W:2:98")).toBe(true);
+        expect(isBet("Result:2:3:1")).toBe(false);
+      });
+    });
+
+    describe("isResult", function() {
+      it("should return correct result", function() {
+        expect(isResult("Bet:W:2:98")).toBe(false);
+        expect(isResult("Result:2:3:1")).toBe(true);
+      });
+    });
+  });
+
   describe("bet", function() {
     describe("product", function() {
       it("should return correct result", function() {
