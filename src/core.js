@@ -31,11 +31,11 @@ function result(input) {
 }
 
 function isBet(input) {
-  return input.split(':')[0] === 'Bet';
+  return type(input) === 'Bet';
 }
 
 function isResult(input) {
-  return input.split(':')[0] === 'Result';
+  return type(input) === 'Result';
 }
 
 function type(input) {
