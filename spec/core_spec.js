@@ -39,6 +39,12 @@ describe("core", function() {
       });
     });
 
+    describe("placements", function() {
+      it("should return an array of the placements in order", function() {
+        expect(placements("Result:2:3:1")).toEqual(["2","3","1"]);
+      });
+    });
+
     describe("bets", function() {
       it("should return all bets", function() {
         expect(bets(input)).toEqual([

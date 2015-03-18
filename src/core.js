@@ -66,6 +66,10 @@ function third(result) {
   return split(result)[3]
 }
 
+function placements(result) {
+  return [first(result), second(result), third(result)];
+}
+
 function split(input) {
   return input.split(':')
 }
