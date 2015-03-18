@@ -2,8 +2,16 @@ function isBet(input) {
   return input.split(':')[0] === 'Bet';
 }
 
+function bets(input) {
+  return _.filter(input, isBet);
+}
+
 function isResult(input) {
   return input.split(':')[0] === 'Result';
+}
+
+function result(input) {
+  return _.first(_.filter(input, isResult));
 }
 
 function product(bet) {

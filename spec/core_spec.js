@@ -1,5 +1,17 @@
 describe("core", function() {
   describe("input", function() {
+    var input = [
+      "Bet:W:3:5",
+      "Bet:W:4:5",
+      "Bet:W:1:16",
+      "Bet:P:2:16",
+      "Bet:P:3:82",
+      "Bet:P:4:52",
+      "Bet:E:2,3:61",
+      "Bet:E:2,3:47",
+      "Result:2:3:1"
+    ];
+
     describe("isBet", function() {
       it("should return correct result", function() {
         expect(isBet("Bet:W:2:98")).toBe(true);
@@ -11,6 +23,27 @@ describe("core", function() {
       it("should return correct result", function() {
         expect(isResult("Bet:W:2:98")).toBe(false);
         expect(isResult("Result:2:3:1")).toBe(true);
+      });
+    });
+
+    describe("result", function() {
+      it("should return the result", function() {
+        expect(result(input)).toBe('Result:2:3:1');
+      });
+    });
+
+    describe("bets", function() {
+      it("should return all bets", function() {
+        expect(bets(input)).toEqual([
+          "Bet:W:3:5",
+          "Bet:W:4:5",
+          "Bet:W:1:16",
+          "Bet:P:2:16",
+          "Bet:P:3:82",
+          "Bet:P:4:52",
+          "Bet:E:2,3:61",
+          "Bet:E:2,3:47"
+        ]);
       });
     });
   });
