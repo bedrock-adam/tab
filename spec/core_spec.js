@@ -170,4 +170,30 @@ describe("core", function() {
       });
     });
   });
+
+  describe("correctness", function() {
+    describe("isWinCorrect", function() {
+      it("should return the correct result", function() {
+        expect(isWinCorrect("Bet:W:3:5", "Result:2:3:1")).toBe(false);
+        expect(isWinCorrect("Bet:W:4:5", "Result:2:3:1")).toBe(false);
+        expect(isWinCorrect("Bet:W:1:16", "Result:2:3:1")).toBe(false);
+      });
+    });
+
+    describe("isPlaceCorrect", function() {
+      it("should return the correct result", function() {
+        expect(isPlaceCorrect("Bet:P:2:16", "Result:2:3:1")).toBe(false);
+        expect(isPlaceCorrect("Bet:P:3:82", "Result:2:3:1")).toBe(true);
+        expect(isPlaceCorrect("Bet:P:4:52", "Result:2:3:1")).toBe(false);
+      });
+    });
+
+    describe("isExactaCorrect", function() {
+      it("should return the correct result", function() {
+        expect(isExactaCorrect("Bet:E:2,3:61", "Result:2:3:1")).toBe(true);
+        expect(isExactaCorrect("Bet:E:3,2:47", "Result:2:3:1")).toBe(false);
+        expect(isExactaCorrect("Bet:E:1,3:16", "Result:2:3:1")).toBe(false);
+      });
+    });
+  });
 });
