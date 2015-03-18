@@ -38,6 +38,10 @@ function isResult(input) {
   return input.split(':')[0] === 'Result';
 }
 
+function type(input) {
+  return _.first(split(input));
+}
+
 function product(bet) {
   return split(bet)[1];
 }

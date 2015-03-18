@@ -26,6 +26,13 @@ describe("core", function() {
       });
     });
 
+    describe("type", function() {
+      it("should return correct result", function() {
+        expect(type("Bet:W:2:98")).toBe("Bet");
+        expect(type("Result:2:3:1")).toBe("Result");
+      });
+    });
+
     describe("result", function() {
       it("should return the result", function() {
         expect(result(input)).toBe('Result:2:3:1');
