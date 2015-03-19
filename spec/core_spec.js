@@ -93,6 +93,29 @@ describe("core", function() {
         expect(stake("Bet:E:3,2:51")).toBe(51);
       });
     });
+
+    describe("stakes", function() {
+      var bets = [
+        "Bet:W:1:3",
+        "Bet:W:2:4",
+        "Bet:W:3:5",
+        "Bet:W:4:5",
+        "Bet:W:1:16",
+        "Bet:W:2:8",
+        "Bet:W:3:22",
+        "Bet:W:4:57",
+        "Bet:W:1:42",
+        "Bet:W:2:98",
+        "Bet:W:3:63",
+        "Bet:W:4:15",
+      ];
+
+      it("should return a array of stakes", function() {
+        expect(stakes(bets)).toEqual(
+          [3, 4, 5, 5, 16, 8, 22, 57, 42, 98, 63, 15]
+        );
+      });
+    });
   });
 
   describe("result", function() {

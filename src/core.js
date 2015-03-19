@@ -72,6 +72,10 @@ function selection(bet) {
   return split(bet)[2];
 }
 
+function stakes(bets) {
+  return _.map(bets, stake);
+}
+
 function stake(bet) {
   return parseInt(split(bet)[3], 10);
 }
