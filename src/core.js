@@ -1,3 +1,8 @@
+function winDividend(bets, result, minusCommission) {
+  return round(minusCommission(total(stakes(bets))) /
+      total(stakes(correctWins(bets, result))));
+}
+
 function total(collection) {
   return _.reduce(collection, function(memo, num) {
     return memo + num;

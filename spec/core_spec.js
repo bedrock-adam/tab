@@ -255,4 +255,34 @@ describe("core", function() {
       });
     });
   });
+
+  describe("dividends", function() {
+    describe("winDividend", function() {
+      var inputs = [
+        "Bet:W:1:3",
+        "Bet:W:2:4",
+        "Bet:W:3:5",
+        "Bet:W:4:5",
+        "Bet:W:1:16",
+        "Bet:W:2:8",
+        "Bet:W:3:22",
+        "Bet:W:4:57",
+        "Bet:W:1:42",
+        "Bet:W:2:98",
+        "Bet:W:3:63",
+        "Bet:W:4:15",
+        "Result:2:3:1"
+      ];
+
+      it("should return the correct result", function() {
+        expect(
+          winDividend(
+            wins(bets(inputs)),
+            result(inputs),
+            minusCommission(15)
+          )
+        ).toBe(2.61);
+      });
+    });
+  });
 });
