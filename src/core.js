@@ -105,3 +105,7 @@ function placements(result) {
 function split(input) {
   return input.split(':')
 }
+
+function round(value) {
+  return +value.toFixed(2);
+}

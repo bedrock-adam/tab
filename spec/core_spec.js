@@ -53,6 +53,12 @@ describe("core", function() {
       });
     });
 
+    describe("round", function() {
+      it("should return the result", function() {
+        expect(round(2.611818181818182)).toBe(2.61);
+      });
+    });
+
     describe("bets", function() {
       it("should return all bets", function() {
         expect(bets(input)).toEqual([
