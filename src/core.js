@@ -1,11 +1,6 @@
-function winDividend(bets, result, minusCommission) {
+function dividend(bets, result, minusCommission, correct) {
   return round(minusCommission(total(stakes(bets))) /
-      total(stakes(correctWins(bets, result))));
-}
-
-function exactaDividend(bets, result, minusCommission) {
-  return round(minusCommission(total(stakes(bets))) /
-      total(stakes(correctExactas(bets, result))));
+      total(stakes(correct(bets, result))));
 }
 
 function total(collection) {

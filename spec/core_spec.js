@@ -276,10 +276,11 @@ describe("core", function() {
 
       it("should return the correct result", function() {
         expect(
-          winDividend(
+          dividend(
             wins(bets(inputs)),
             result(inputs),
-            minusCommission(15)
+            minusCommission(15),
+            correctWins
           )
         ).toBe(2.61);
       });
@@ -304,10 +305,11 @@ describe("core", function() {
 
       it("should return the correct result", function() {
         expect(
-          exactaDividend(
+          dividend(
             exactas(bets(inputs)),
             result(inputs),
-            minusCommission(18)
+            minusCommission(18),
+            correctExactas
           )
         ).toBe(2.43);
       });
