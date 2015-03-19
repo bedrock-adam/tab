@@ -1,3 +1,9 @@
+function minusCommission(percent) {
+  return function(value) {
+    return value * ((100 - percent) / 100);
+  };
+}
+
 function isWinCorrect(bet, result) {
   return selection(bet) === first(result);
 }

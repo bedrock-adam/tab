@@ -210,4 +210,12 @@ describe("core", function() {
       });
     });
   });
+
+  describe("commission", function() {
+    describe("minusComission", function() {
+      it("should return a function that when called evaluates correctly", function() {
+        expect(minusCommission(15)(100)).toBe(85);
+      });
+    });
+  });
 });
