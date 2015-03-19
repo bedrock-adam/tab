@@ -196,7 +196,7 @@ describe("core", function() {
 
     describe("isPlaceCorrect", function() {
       it("should return the correct result", function() {
-        expect(isPlaceCorrect("Bet:P:2:16", "Result:2:3:1")).toBe(false);
+        expect(isPlaceCorrect("Bet:P:2:16", "Result:2:3:1")).toBe(true);
         expect(isPlaceCorrect("Bet:P:3:82", "Result:2:3:1")).toBe(true);
         expect(isPlaceCorrect("Bet:P:4:52", "Result:2:3:1")).toBe(false);
       });

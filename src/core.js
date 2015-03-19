@@ -1,3 +1,15 @@
+function isWinCorrect(bet, result) {
+  return selection(bet) === first(result);
+}
+
+function isPlaceCorrect(bet, result) {
+  return _.contains(placements(result), selection(bet));
+}
+
+function isExactaCorrect(bet, result) {
+  return _.isEqual([first(result), second(result)], selections(bet));
+}
+
 function wins(bets) {
   return _.filter(bets, isWin);
 }
