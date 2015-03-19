@@ -241,9 +241,9 @@ describe("core", function() {
 
     describe("isExactaCorrect", function() {
       it("should return the correct result", function() {
-        expect(isExactaCorrect("Bet:E:2,3:61", "Result:2:3:1")).toBe(true);
-        expect(isExactaCorrect("Bet:E:3,2:47", "Result:2:3:1")).toBe(false);
-        expect(isExactaCorrect("Bet:E:1,3:16", "Result:2:3:1")).toBe(false);
+        expect(isExactaCorrect("Result:2:3:1")("Bet:E:2,3:61")).toBe(true);
+        expect(isExactaCorrect("Result:2:3:1")("Bet:E:3,2:47")).toBe(false);
+        expect(isExactaCorrect("Result:2:3:1")("Bet:E:1,3:16")).toBe(false);
       });
     });
   });
