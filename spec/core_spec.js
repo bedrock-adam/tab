@@ -45,6 +45,14 @@ describe("core", function() {
       });
     });
 
+    describe("total", function() {
+      it("should return the result", function() {
+        expect(
+          total([3, 4, 5, 5, 16, 8, 22, 57, 42, 98, 63, 15])
+        ).toBe(338);
+      });
+    });
+
     describe("bets", function() {
       it("should return all bets", function() {
         expect(bets(input)).toEqual([

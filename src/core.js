@@ -1,3 +1,9 @@
+function total(collection) {
+  return _.reduce(collection, function(memo, num) {
+    return memo + num;
+  }, 0);
+}
+
 function minusCommission(percent) {
   return function(value) {
     return value * ((100 - percent) / 100);
