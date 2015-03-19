@@ -225,9 +225,9 @@ describe("core", function() {
   describe("correctness", function() {
     describe("isWinCorrect", function() {
       it("should return the correct result", function() {
-        expect(isWinCorrect("Bet:W:3:5", "Result:2:3:1")).toBe(false);
-        expect(isWinCorrect("Bet:W:4:5", "Result:2:3:1")).toBe(false);
-        expect(isWinCorrect("Bet:W:1:16", "Result:2:3:1")).toBe(false);
+        expect(isWinCorrect("Result:2:3:1")("Bet:W:3:5")).toBe(false);
+        expect(isWinCorrect("Result:2:3:1")("Bet:W:4:5")).toBe(false);
+        expect(isWinCorrect("Result:2:3:1")("Bet:W:1:16")).toBe(false);
       });
     });
 

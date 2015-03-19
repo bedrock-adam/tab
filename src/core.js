@@ -10,8 +10,14 @@ function minusCommission(percent) {
   };
 }
 
-function isWinCorrect(bet, result) {
-  return selection(bet) === first(result);
+function correctWins(bets, result) {
+  return _.filter(bets, isWinCorrect(result))
+}
+
+function isWinCorrect(result) {
+  return function(bet) {
+    return selection(bet) === first(result);
+  };
 }
 
 function isPlaceCorrect(bet, result) {
