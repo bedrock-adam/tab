@@ -78,6 +78,14 @@ describe("core", function() {
       });
     });
 
+    describe("selections", function() {
+      it("should return correct result", function() {
+        expect(selections("Bet:W:2:98")).toEqual(["2"]);
+        expect(selections("Bet:P:4:105")).toEqual(["4"]);
+        expect(selections("Bet:E:3,2:51")).toEqual(["3", "2"]);
+      });
+    });
+
     describe("stake", function() {
       it("should return correct result", function() {
         expect(stake("Bet:W:2:98")).toBe(98);

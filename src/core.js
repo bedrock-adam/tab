@@ -46,6 +46,10 @@ function product(bet) {
   return split(bet)[1];
 }
 
+function selections(bet) {
+  return selection(bet).split(',');
+}
+
 function selection(bet) {
   return split(bet)[2];
 }
