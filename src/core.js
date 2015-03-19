@@ -3,6 +3,11 @@ function winDividend(bets, result, minusCommission) {
       total(stakes(correctWins(bets, result))));
 }
 
+function exactaDividend(bets, result, minusCommission) {
+  return round(minusCommission(total(stakes(bets))) /
+      total(stakes(correctExactas(bets, result))));
+}
+
 function total(collection) {
   return _.reduce(collection, function(memo, num) {
     return memo + num;
@@ -27,6 +32,10 @@ function isWinCorrect(result) {
 
 function isPlaceCorrect(bet, result) {
   return _.contains(placements(result), selection(bet));
+}
+
+function correctExactas(bets, result) {
+  return _.filter(bets, isExactaCorrect(result))
 }
 
 function isExactaCorrect(result) {
