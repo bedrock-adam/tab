@@ -241,8 +241,10 @@ describe("core", function() {
   });
 
   describe("dividends", function() {
-    describe("winDividend", function() {
-      var inputs = [
+    var result = "Result:2:3:1";
+
+    describe("processWins", function() {
+      var bets = [
         "Bet:W:1:3",
         "Bet:W:2:4",
         "Bet:W:3:5",
@@ -255,23 +257,15 @@ describe("core", function() {
         "Bet:W:2:98",
         "Bet:W:3:63",
         "Bet:W:4:15",
-        "Result:2:3:1"
       ];
 
       it("should return the correct result", function() {
-        expect(
-          tab.dividend(
-            tab.wins(tab.bets(inputs)),
-            tab.result(inputs),
-            tab.minusCommission(15),
-            tab.correctWins
-          )
-        ).toBe(2.61);
+        expect(tab.processWins(bets, result)).toEqual(["Win:2:$2.61"]);
       });
     });
 
-    describe("placeDividends", function() {
-      var inputs = [
+    describe("processPlaces", function() {
+      var bets = [
         "Bet:P:1:31",
         "Bet:P:2:89",
         "Bet:P:3:28",
@@ -283,24 +277,20 @@ describe("core", function() {
         "Bet:P:1:18",
         "Bet:P:2:74",
         "Bet:P:3:39",
-        "Bet:P:4:105",
-        "Result:2:3:1"
+        "Bet:P:4:105"
       ];
 
-      xit("should return the correct result", function() {
-        expect(
-          tab.dividends(
-            tab.wins(tab.bets(inputs)),
-            tab.result(inputs),
-            tab.minusCommission(15),
-            tab.correctWins
-          )
-        ).toBe([["2", 1.06], ["3", 1.27], ["1", 2.13]]);
+      it("should return the correct result", function() {
+        expect(tab.processPlaces(bets, result)).toEqual([
+          "Place:2:$1.06",
+          "Place:3:$1.27",
+          "Place:1:$2.13"
+        ]);
       });
     });
 
-    describe("exactaDividend", function() {
-      var inputs = [
+    describe("processExactas", function() {
+      var bets = [
         "Bet:E:1,2:13",
         "Bet:E:2,3:98",
         "Bet:E:1,3:82",
@@ -312,19 +302,11 @@ describe("core", function() {
         "Bet:E:1,2:81",
         "Bet:E:2,3:47",
         "Bet:E:1,3:93",
-        "Bet:E:3,2:51",
-        "Result:2:3:1"
+        "Bet:E:3,2:51"
       ];
 
       it("should return the correct result", function() {
-        expect(
-          tab.dividend(
-            tab.exactas(tab.bets(inputs)),
-            tab.result(inputs),
-            tab.minusCommission(18),
-            tab.correctExactas
-          )
-        ).toBe(2.43);
+        expect(tab.processExactas(bets, result)).toEqual(["Exacta:2,3:$2.43"]);
       });
     });
   });

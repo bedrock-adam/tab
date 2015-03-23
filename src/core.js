@@ -146,6 +146,32 @@ module.exports = function() {
     return +value.toFixed(2);
   };
 
+  var processWins = function(bets, result) {
+    return [format(
+      "Win",
+      [first(result)],
+      dividend(wins(bets), result, correctWins(result), divideBy(1), minusCommission(15))
+    )];
+  }
+
+  var processPlaces = function(bets, result) {
+    return Array.prototype.map.call(placements(result), function(placement) {
+      return format(
+        "Place",
+        [placement],
+        dividend(places(bets), result, correctPlaces(placement), divideBy(3), minusCommission(12))
+      );
+    });
+  };
+
+  var processExactas = function(bets, result) {
+    return [format(
+      "Exacta",
+      [first(result), second(result)],
+      dividend(exactas(bets), result, correctExactas(result), divideBy(1), minusCommission(18))
+    )];
+  };
+
   return {
     dividend: dividend,
     placeDividends: placeDividends,
@@ -176,6 +202,9 @@ module.exports = function() {
     third: third,
     placements: placements,
     split: split,
-    round: round
+    round: round,
+    processWins: processWins,
+    processPlaces: processPlaces,
+    processExactas: processExactas
   };
 }();
