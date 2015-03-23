@@ -1,26 +1,36 @@
-function Calculator() {
-  this.inputs = [];
-}
+module.exports = function() {
+  "use strict";
 
-Calculator.prototype.start = function() {
-  process.stdin.setEncoding('utf8');
+  var tab = require('./core');
 
-  process.stdin.on('readable', function() {
-    var input = process.stdin.read();
+  var Calculator = function() {
+    this.inputs = [];
+  };
 
-    if (input === null) return;
+  Calculator.prototype.start = function() {
+    process.stdin.setEncoding('utf8');
 
-    this.inputs.push(input);
+    var that = this;
 
-    if (isResult(input)) this.output();
-  });
-};
+    process.stdin.on('readable', function() {
+      var input = process.stdin.read();
 
-Calculator.prototype.output = function() {
-  // process.stdout.write(winDividend);
-  // process.stdout.write(PlaceDividends);
-  // process.stdout.write(exactaDividend);
-}
+      if (input === null) return;
 
-calculator = new Calculator;
-calculator.start();
+      that.inputs.push(input.trim());
+
+      if (tab.isResult(input)) {
+        that.output();
+        that.inputs = [];
+      }
+    });
+  };
+
+  Calculator.prototype.output = function() {
+    return Array.prototype.map.call(tab.process(this.inputs), function(processed) {
+      process.stdout.write(processed);
+    });
+  };
+
+  return Calculator;
+}();
