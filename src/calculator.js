@@ -17,7 +17,9 @@ module.exports = function() {
 
       if (input === null) return;
 
-      that.inputs.push(input.trim());
+      input = input.trim();
+
+      that.inputs.push(input);
 
       if (tab.isResult(input)) {
         that.output();
@@ -28,7 +30,7 @@ module.exports = function() {
 
   Calculator.prototype.output = function() {
     return Array.prototype.map.call(tab.process(this.inputs), function(processed) {
-      process.stdout.write(processed);
+      process.stdout.write(processed + "\n");
     });
   };
 
