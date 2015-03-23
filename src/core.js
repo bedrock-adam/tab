@@ -36,8 +36,6 @@ module.exports = function() {
     return _.contains(placements(result), selection(bet));
   };
 
-  var correctExactas = function(bets, result) {
-    return _.filter(bets, isExactaCorrect(result))
   var correctPlaces = function(placement, result) {
     return function(bets) {
       return Array.prototype.filter.call(bets, function(bet) {
@@ -46,9 +44,11 @@ module.exports = function() {
     };
   };
 
-  var isExactaCorrect = function(result) {
-    return function(bet) {
-      return _.isEqual([first(result), second(result)], selections(bet));
+  var correctExactas = function(result) {
+    return function(bets) {
+      return Array.prototype.filter.call(bets, function(bet) {
+        return _.isEqual(selections(bet), [first(result), second(result)]);
+      });
     };
   };
 
@@ -149,7 +149,6 @@ module.exports = function() {
     isPlaceCorrect: isPlaceCorrect,
     correctPlaces: correctPlaces,
     correctExactas: correctExactas,
-    isExactaCorrect: isExactaCorrect,
     wins: wins,
     places: places,
     exactas: exactas,

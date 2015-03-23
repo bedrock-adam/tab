@@ -232,14 +232,6 @@ describe("core", function() {
         expect(tab.isPlaceCorrect("Bet:P:4:52", "Result:2:3:1")).toBe(false);
       });
     });
-
-    describe("isExactaCorrect", function() {
-      it("should return the correct result", function() {
-        expect(tab.isExactaCorrect("Result:2:3:1")("Bet:E:2,3:61")).toBe(true);
-        expect(tab.isExactaCorrect("Result:2:3:1")("Bet:E:3,2:47")).toBe(false);
-        expect(tab.isExactaCorrect("Result:2:3:1")("Bet:E:1,3:16")).toBe(false);
-      });
-    });
   });
 
   describe("commission", function() {
