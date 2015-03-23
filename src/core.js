@@ -1,128 +1,172 @@
-function dividend(bets, result, minusCommission, correct) {
-  return round(minusCommission(total(stakes(bets))) /
-      total(stakes(correct(bets, result))));
-}
+module.exports = function() {
+  "use strict";
 
-function total(collection) {
-  return _.reduce(collection, function(memo, num) {
-    return memo + num;
-  }, 0);
-}
+  var _ = require('underscore');
 
-function minusCommission(percent) {
-  return function(value) {
-    return value * ((100 - percent) / 100);
+  var dividend = function(bets, result, minusCommission, correct) {
+    return round(minusCommission(total(stakes(bets))) /
+        total(stakes(correct(bets, result))));
   };
-}
 
-function correctWins(bets, result) {
-  return _.filter(bets, isWinCorrect(result))
-}
-
-function isWinCorrect(result) {
-  return function(bet) {
-    return selection(bet) === first(result);
+  var placeDividends = function(bets, result, minusCommission) {
+    return minusCommission(total(stakes(bets))) / 3
   };
-}
 
-function isPlaceCorrect(bet, result) {
-  return _.contains(placements(result), selection(bet));
-}
-
-function correctExactas(bets, result) {
-  return _.filter(bets, isExactaCorrect(result))
-}
-
-function isExactaCorrect(result) {
-  return function(bet) {
-    return _.isEqual([first(result), second(result)], selections(bet));
+  var total = function(collection) {
+    return _.reduce(collection, function(memo, num) {
+      return memo + num;
+    }, 0);
   };
-}
 
-function wins(bets) {
-  return _.filter(bets, isWin);
-}
+  var minusCommission = function(percent) {
+    return function(value) {
+      return value * ((100 - percent) / 100);
+    };
+  };
 
-function places(bets) {
-  return _.filter(bets, isPlace);
-}
+  var correctWins = function(bets, result) {
+    return _.filter(bets, isWinCorrect(result))
+  };
 
-function exactas(bets) {
-  return _.filter(bets, isExacta);
-}
+  var isWinCorrect = function(result) {
+    return function(bet) {
+      return selection(bet) === first(result);
+    };
+  };
 
-function isWin(bet) {
-  return product(bet) === 'W';
-}
+  var isPlaceCorrect = function(bet, result) {
+    return _.contains(placements(result), selection(bet));
+  };
 
-function isPlace(bet) {
-  return product(bet) === 'P';
-}
+  var correctExactas = function(bets, result) {
+    return _.filter(bets, isExactaCorrect(result))
+  };
 
-function isExacta(bet) {
-  return product(bet) === 'E';
-}
+  var isExactaCorrect = function(result) {
+    return function(bet) {
+      return _.isEqual([first(result), second(result)], selections(bet));
+    };
+  };
 
-function bets(input) {
-  return _.filter(input, isBet);
-}
+  var wins = function(bets) {
+    return _.filter(bets, isWin);
+  };
 
-function result(input) {
-  return _.first(_.filter(input, isResult));
-}
+  var places = function(bets) {
+    return _.filter(bets, isPlace);
+  };
 
-function isBet(input) {
-  return type(input) === 'Bet';
-}
+  var exactas = function(bets) {
+    return _.filter(bets, isExacta);
+  };
 
-function isResult(input) {
-  return type(input) === 'Result';
-}
+  var isWin = function(bet) {
+    return product(bet) === 'W';
+  };
 
-function type(input) {
-  return _.first(split(input));
-}
+  var isPlace = function(bet) {
+    return product(bet) === 'P';
+  };
 
-function product(bet) {
-  return split(bet)[1];
-}
+  var isExacta = function(bet) {
+    return product(bet) === 'E';
+  };
 
-function selections(bet) {
-  return selection(bet).split(',');
-}
+  var bets = function(input) {
+    return _.filter(input, isBet);
+  };
 
-function selection(bet) {
-  return split(bet)[2];
-}
+  var result = function(input) {
+    return _.first(_.filter(input, isResult));
+  };
 
-function stakes(bets) {
-  return _.map(bets, stake);
-}
+  var isBet = function(input) {
+    return type(input) === 'Bet';
+  };
 
-function stake(bet) {
-  return parseInt(split(bet)[3], 10);
-}
+  var isResult = function(input) {
+    return type(input) === 'Result';
+  };
 
-function first(result) {
-  return split(result)[1]
-}
+  var type = function(input) {
+    return _.first(split(input));
+  };
 
-function second(result) {
-  return split(result)[2]
-}
+  var product = function(bet) {
+    return split(bet)[1];
+  };
 
-function third(result) {
-  return split(result)[3]
-}
+  var selections = function(bet) {
+    return selection(bet).split(',');
+  };
 
-function placements(result) {
-  return [first(result), second(result), third(result)];
-}
+  var selection = function(bet) {
+    return split(bet)[2];
+  };
 
-function split(input) {
-  return input.split(':')
-}
+  var stakes = function(bets) {
+    return _.map(bets, stake);
+  };
 
-function round(value) {
-  return +value.toFixed(2);
-}
+  var stake = function(bet) {
+    return parseInt(split(bet)[3], 10);
+  };
+
+  var first = function(result) {
+    return split(result)[1]
+  };
+
+  var second = function(result) {
+    return split(result)[2]
+  };
+
+  var third = function(result) {
+    return split(result)[3]
+  };
+
+  var placements = function(result) {
+    return [first(result), second(result), third(result)];
+  };
+
+  var split = function(input) {
+    return input.split(':')
+  };
+
+  var round = function(value) {
+    return +value.toFixed(2);
+  };
+
+  return {
+    dividend: dividend,
+    placeDividends: placeDividends,
+    total: total,
+    minusCommission: minusCommission,
+    correctWins: correctWins,
+    isWinCorrect: isWinCorrect,
+    isPlaceCorrect: isPlaceCorrect,
+    correctExactas: correctExactas,
+    isExactaCorrect: isExactaCorrect,
+    wins: wins,
+    places: places,
+    exactas: exactas,
+    isWin: isWin,
+    isPlace: isPlace,
+    isExacta: isExacta,
+    bets: bets,
+    result: result,
+    isBet: isBet,
+    isResult: isResult,
+    type: type,
+    product: product,
+    selections: selections,
+    selection: selection,
+    stakes: stakes,
+    stake: stake,
+    first: first,
+    second: second,
+    third: third,
+    placements: placements,
+    split: split,
+    round: round
+  };
+}();
