@@ -12,10 +12,6 @@ module.exports = function() {
         total(stakes(correct(bets))));
   };
 
-  var placeDividends = function(bets, result, minusCommission) {
-    return minusCommission(total(stakes(bets))) / 3
-  };
-
   var total = function(collection) {
     return _.reduce(collection, function(memo, num) {
       return memo + num;
@@ -185,7 +181,6 @@ module.exports = function() {
   return {
     process: process,
     dividend: dividend,
-    placeDividends: placeDividends,
     total: total,
     minusCommission: minusCommission,
     divideBy: divideBy,
