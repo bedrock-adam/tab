@@ -40,6 +40,12 @@ module.exports = function() {
 
   var correctExactas = function(bets, result) {
     return _.filter(bets, isExactaCorrect(result))
+  var correctPlaces = function(placement, result) {
+    return function(bets) {
+      return Array.prototype.filter.call(bets, function(bet) {
+        return selection(bet) === placement;
+      });
+    };
   };
 
   var isExactaCorrect = function(result) {
@@ -144,6 +150,7 @@ module.exports = function() {
     correctWins: correctWins,
     isWinCorrect: isWinCorrect,
     isPlaceCorrect: isPlaceCorrect,
+    correctPlaces: correctPlaces,
     correctExactas: correctExactas,
     isExactaCorrect: isExactaCorrect,
     wins: wins,
