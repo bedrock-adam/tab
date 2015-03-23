@@ -172,7 +172,18 @@ module.exports = function() {
     )];
   };
 
+  var process = function (input) {
+    return Array.prototype.reduce.call([
+      processWins, processPlaces, processExactas
+    ], function(memo, cb) {
+      Array.prototype.push.apply(memo, cb(bets(input), result(input)));
+
+      return memo;
+    }, []);
+  };
+
   return {
+    process: process,
     dividend: dividend,
     placeDividends: placeDividends,
     total: total,
