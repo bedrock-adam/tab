@@ -3,9 +3,9 @@ module.exports = function() {
 
   var _ = require('underscore');
 
-  var dividend = function(bets, result, minusCommission, correct) {
-    return round(minusCommission(total(stakes(bets))) /
-        total(stakes(correct(bets, result))));
+  var dividend = function(bets, result, correct, divideBy, minusCommission) {
+    return round(divideBy(minusCommission(total(stakes(bets)))) /
+        total(stakes(correct(bets))));
   };
 
   var placeDividends = function(bets, result, minusCommission) {
