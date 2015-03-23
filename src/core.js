@@ -3,6 +3,10 @@ module.exports = function() {
 
   var _ = require('underscore');
 
+  var format = function(product, winningSelections, dividend) {
+    return [product, winningSelections.join(','), '$' + dividend].join(':');
+  };
+
   var dividend = function(bets, result, correct, divideBy, minusCommission) {
     return round(divideBy(minusCommission(total(stakes(bets)))) /
         total(stakes(correct(bets))));
