@@ -224,16 +224,6 @@ describe("core", function() {
     });
   });
 
-  describe("correctness", function() {
-    describe("isPlaceCorrect", function() {
-      it("should return the correct result", function() {
-        expect(tab.isPlaceCorrect("Bet:P:2:16", "Result:2:3:1")).toBe(true);
-        expect(tab.isPlaceCorrect("Bet:P:3:82", "Result:2:3:1")).toBe(true);
-        expect(tab.isPlaceCorrect("Bet:P:4:52", "Result:2:3:1")).toBe(false);
-      });
-    });
-  });
-
   describe("commission", function() {
     describe("minusComission", function() {
       it("should return a function that when called evaluates correctly", function() {

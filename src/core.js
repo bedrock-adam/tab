@@ -32,10 +32,6 @@ module.exports = function() {
     };
   };
 
-  var isPlaceCorrect = function(bet, result) {
-    return _.contains(placements(result), selection(bet));
-  };
-
   var correctPlaces = function(placement, result) {
     return function(bets) {
       return Array.prototype.filter.call(bets, function(bet) {
@@ -146,7 +142,6 @@ module.exports = function() {
     total: total,
     minusCommission: minusCommission,
     correctWins: correctWins,
-    isPlaceCorrect: isPlaceCorrect,
     correctPlaces: correctPlaces,
     correctExactas: correctExactas,
     wins: wins,
