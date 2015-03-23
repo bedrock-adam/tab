@@ -232,6 +232,14 @@ describe("core", function() {
     });
   });
 
+  describe("division", function() {
+    describe("divideBy", function() {
+      it("should return a function that when called evaluates correctly", function() {
+        expect(tab.divideBy(3)(9)).toBe(3);
+      });
+    });
+  });
+
   describe("dividends", function() {
     describe("winDividend", function() {
       var inputs = [

@@ -18,6 +18,12 @@ module.exports = function() {
     }, 0);
   };
 
+  var divideBy = function(denominator) {
+    return function(numerator) {
+      return numerator / denominator;
+    };
+  };
+
   var minusCommission = function(percent) {
     return function(value) {
       return value * ((100 - percent) / 100);
@@ -141,6 +147,7 @@ module.exports = function() {
     placeDividends: placeDividends,
     total: total,
     minusCommission: minusCommission,
+    divideBy: divideBy,
     correctWins: correctWins,
     correctPlaces: correctPlaces,
     correctExactas: correctExactas,
