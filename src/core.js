@@ -24,13 +24,11 @@ module.exports = function() {
     };
   };
 
-  var correctWins = function(bets, result) {
-    return _.filter(bets, isWinCorrect(result))
-  };
-
-  var isWinCorrect = function(result) {
-    return function(bet) {
-      return selection(bet) === first(result);
+  var correctWins = function(result) {
+    return function(bets) {
+      return Array.prototype.filter.call(bets, function(bet) {
+        return selection(bet) === first(result);
+      });
     };
   };
 
@@ -148,7 +146,6 @@ module.exports = function() {
     total: total,
     minusCommission: minusCommission,
     correctWins: correctWins,
-    isWinCorrect: isWinCorrect,
     isPlaceCorrect: isPlaceCorrect,
     correctPlaces: correctPlaces,
     correctExactas: correctExactas,

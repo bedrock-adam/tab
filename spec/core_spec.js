@@ -225,14 +225,6 @@ describe("core", function() {
   });
 
   describe("correctness", function() {
-    describe("isWinCorrect", function() {
-      it("should return the correct result", function() {
-        expect(tab.isWinCorrect("Result:2:3:1")("Bet:W:3:5")).toBe(false);
-        expect(tab.isWinCorrect("Result:2:3:1")("Bet:W:4:5")).toBe(false);
-        expect(tab.isWinCorrect("Result:2:3:1")("Bet:W:1:16")).toBe(false);
-      });
-    });
-
     describe("isPlaceCorrect", function() {
       it("should return the correct result", function() {
         expect(tab.isPlaceCorrect("Bet:P:2:16", "Result:2:3:1")).toBe(true);
